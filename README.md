@@ -1,3 +1,4 @@
+[README.md](https://github.com/user-attachments/files/29067873/README.md)
 # The Rock & Soul — Content Dashboard
 
 A live dashboard showing every video and photo delivered each month against the
@@ -41,6 +42,9 @@ A live dashboard showing every video and photo delivered each month against the
 - **Mark something as still editing:** set `status: "pending"`.
 - **A long video that's worth more than one:** set `countsAs: 2` (or 3, 4...).
 - **Add a note to a month** (e.g. why something counts as 2): edit the `note:` line.
+- **Finish a month:** set `complete: true` on that month. Until you do, the
+  month shows as "in progress" and doesn't count against the running balance —
+  so a half-finished June never makes the numbers look bad.
 
 ---
 
