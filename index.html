@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Rock &amp; Soul — Content Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14161c;
+    --bg-raise:#1c1f28;
+    --bg-card:#21252f;
+    --line:#2e333f;
+    --line-soft:#272c36;
+    --ink:#f3efe7;
+    --ink-dim:#a4a9b4;
+    --ink-faint:#6f7682;
+    --amber:#e9a93c;
+    --amber-soft:#3a2e18;
+    --green:#6fcf8e;
+    --green-soft:#1f3326;
+    --pending:#f0c64b;
+    --pending-soft:#37310f;
+    --red:#e07a6b;
+    --red-soft:#3a221e;
+    --radius:14px;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Space Grotesk',system-ui,sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    padding:0 20px 80px;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto}
+
+  /* ---------- Header ---------- */
+  header{
+    padding:48px 0 34px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:38px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.72rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--amber);
+    margin-bottom:14px;
+  }
+  h1{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:clamp(2rem,5vw,3.2rem);
+    line-height:1.04;
+    letter-spacing:-.01em;
+  }
+  h1 .soul{font-style:italic;color:var(--amber)}
+  .sub{
+    color:var(--ink-dim);
+    margin-top:12px;
+    max-width:54ch;
+    font-size:.98rem;
+  }
+
+  /* ---------- Balance hero ---------- */
+  .hero{
+    background:var(--bg-raise);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:30px 30px 26px;
+    margin-bottom:14px;
+  }
+  .hero-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:18px;
+    margin-bottom:24px;
+  }
+  .hero-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.72rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:10px;
+  }
+  .balance-num{
+    font-family:'Fraunces',serif;
+    font-size:clamp(2.6rem,7vw,4.2rem);
+    line-height:.95;
+    font-weight:500;
+  }
+  .balance-num.ahead{color:var(--green)}
+  .balance-num.behind{color:var(--red)}
+  .balance-num.even{color:var(--ink)}
+  .balance-word{
+    font-size:.95rem;
+    color:var(--ink-dim);
+    margin-top:8px;
+  }
+  .hero-right{text-align:right}
+  .hero-stat{margin-bottom:14px}
+  .hero-stat:last-child{margin-bottom:0}
+  .hero-stat .v{
+    font-size:1.5rem;
+    font-weight:600;
+    font-variant-numeric:tabular-nums;
+  }
+  .hero-stat .l{
+    font-size:.74rem;
+    color:var(--ink-faint);
+    font-family:'IBM Plex Mono',monospace;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+
+  /* progress track */
+  .track-wrap{margin-top:6px}
+  .track{
+    height:12px;
+    background:var(--bg);
+    border-radius:99px;
+    overflow:hidden;
+    display:flex;
+    border:1px solid var(--line);
+  }
+  .track .fill{background:var(--amber);height:100%;transition:width .9s cubic-bezier(.2,.7,.2,1)}
+  .track-legend{
+    display:flex;
+    justify-content:space-between;
+    margin-top:10px;
+    font-size:.8rem;
+    color:var(--ink-faint);
+    font-family:'IBM Plex Mono',monospace;
+  }
+
+  /* ---------- Reconciliation strip ---------- */
+  .recon{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:10px;
+    margin-bottom:40px;
+  }
+  .recon-card{
+    background:var(--bg-card);
+    border:1px solid var(--line-soft);
+    border-radius:12px;
+    padding:16px 18px;
+  }
+  .recon-card .m{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.74rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:10px;
+  }
+  .recon-card .row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:4px;
+  }
+  .recon-card .delivered{
+    font-size:1.7rem;
+    font-weight:600;
+    font-variant-numeric:tabular-nums;
+  }
+  .recon-card .quota{color:var(--ink-faint);font-size:.9rem}
+  .pill{
+    display:inline-block;
+    font-size:.76rem;
+    font-weight:600;
+    padding:3px 9px;
+    border-radius:99px;
+    font-family:'IBM Plex Mono',monospace;
+  }
+  .pill.ahead{background:var(--green-soft);color:var(--green)}
+  .pill.behind{background:var(--red-soft);color:var(--red)}
+  .pill.even{background:var(--amber-soft);color:var(--amber)}
+
+  /* ---------- Month sections ---------- */
+  .month{margin-bottom:46px;scroll-margin-top:20px}
+  .month-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    flex-wrap:wrap;
+    padding-bottom:16px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:20px;
+  }
+  .month-head h2{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:1.9rem;
+    letter-spacing:-.01em;
+  }
+  .month-head .yr{color:var(--ink-faint);font-size:1.1rem;font-weight:400}
+  .month-count{
+    margin-left:auto;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.85rem;
+    color:var(--ink-dim);
+  }
+  .month-count b{color:var(--ink);font-weight:600}
+  .month-note{
+    background:var(--amber-soft);
+    border-left:3px solid var(--amber);
+    color:#f0d9a8;
+    padding:10px 14px;
+    border-radius:6px;
+    font-size:.9rem;
+    margin-bottom:20px;
+  }
+  .pending-banner{
+    background:var(--pending-soft);
+    border-left:3px solid var(--pending);
+    color:#f3df9c;
+    padding:10px 14px;
+    border-radius:6px;
+    font-size:.88rem;
+    margin-bottom:20px;
+    font-family:'IBM Plex Mono',monospace;
+    letter-spacing:.02em;
+  }
+
+  /* ---------- Video grid ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+    gap:14px;
+  }
+  .card{
+    background:var(--bg-card);
+    border:1px solid var(--line-soft);
+    border-radius:12px;
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    transition:border-color .2s,transform .2s;
+    position:relative;
+  }
+  .card:hover{border-color:#3c424f;transform:translateY(-2px)}
+  .card.pending{border-color:#574d22;background:linear-gradient(180deg,var(--pending-soft) 0%,var(--bg-card) 60%)}
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .card-title{
+    font-size:1.02rem;
+    font-weight:600;
+    line-height:1.25;
+  }
+  .badge-2x{
+    flex-shrink:0;
+    background:var(--amber);
+    color:#14161c;
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:700;
+    font-size:.78rem;
+    padding:3px 8px;
+    border-radius:6px;
+    letter-spacing:.02em;
+  }
+  .status-row{display:flex;align-items:center;gap:8px}
+  .dot{width:8px;height:8px;border-radius:50%}
+  .dot.edited{background:var(--green)}
+  .dot.pending{background:var(--pending)}
+  .status-txt{font-size:.82rem;color:var(--ink-dim);font-family:'IBM Plex Mono',monospace;letter-spacing:.04em}
+  .links{display:flex;gap:8px;margin-top:auto}
+  .btn{
+    flex:1;
+    text-align:center;
+    text-decoration:none;
+    font-size:.85rem;
+    font-weight:500;
+    padding:9px 10px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    transition:background .15s,border-color .15s,color .15s;
+  }
+  .btn.video{background:var(--amber);color:#14161c;border-color:var(--amber)}
+  .btn.video:hover{background:#f3bb55}
+  .btn.photo{background:transparent;color:var(--ink-dim)}
+  .btn.photo:hover{border-color:var(--ink-faint);color:var(--ink)}
+  .btn.disabled{opacity:.32;pointer-events:none}
+
+  .empty{
+    color:var(--ink-faint);
+    font-style:italic;
+    padding:24px 0;
+    font-size:.95rem;
+  }
+
+  footer{
+    margin-top:60px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    color:var(--ink-faint);
+    font-size:.82rem;
+    font-family:'IBM Plex Mono',monospace;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  @media (max-width:560px){
+    .hero{padding:24px 20px}
+    .hero-right{text-align:left}
+    .month-count{margin-left:0;width:100%}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Content Delivery · reelCreative</div>
+    <h1>The Rock &amp; <span class="soul">Soul</span></h1>
+    <p class="sub">A running record of every video and photo delivered each month, measured against the 8-video monthly agreement.</p>
+  </header>
+
+  <section class="hero">
+    <div class="hero-top">
+      <div>
+        <div class="hero-label">Running Balance</div>
+        <div class="balance-num" id="balanceNum">—</div>
+        <div class="balance-word" id="balanceWord"></div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-stat">
+          <div class="v" id="totalDelivered">—</div>
+          <div class="l">Videos delivered</div>
+        </div>
+        <div class="hero-stat">
+          <div class="v" id="totalOwed">—</div>
+          <div class="l">Owed to date</div>
+        </div>
+      </div>
+    </div>
+    <div class="track-wrap">
+      <div class="track"><div class="fill" id="trackFill" style="width:0%"></div></div>
+      <div class="track-legend">
+        <span id="legendLeft">0 delivered</span>
+        <span id="legendRight">0 owed</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="recon" id="recon"></section>
+
+  <div id="months"></div>
+
+  <footer>
+    <span>Updated automatically from project records.</span>
+    <span id="lastBuilt"></span>
+  </footer>
+
+</div>
+
+<script src="data.js"></script>
+<script>
+  const monthsWithVideos = MONTHS.filter(m => m.videos.length > 0);
+
+  // ---- math helpers ----
+  const monthDelivered = m =>
+    m.videos.reduce((s,v) => s + (v.status === "edited" ? (v.countsAs||1) : 0), 0);
+  const monthPending = m =>
+    m.videos.reduce((s,v) => s + (v.status === "pending" ? (v.countsAs||1) : 0), 0);
+
+  const totalDelivered = monthsWithVideos.reduce((s,m)=>s+monthDelivered(m),0);
+  const totalOwed = monthsWithVideos.length * QUOTA_PER_MONTH;
+  const balance = totalDelivered - totalOwed;
+
+  // ---- hero ----
+  const bn = document.getElementById('balanceNum');
+  const bw = document.getElementById('balanceWord');
+  if(balance > 0){ bn.textContent = '+'+balance; bn.classList.add('ahead'); bw.textContent = `${balance} video${balance>1?'s':''} ahead of the agreement.`; }
+  else if(balance < 0){ bn.textContent = balance; bn.classList.add('behind'); bw.textContent = `${Math.abs(balance)} video${Math.abs(balance)>1?'s':''} to make up.`; }
+  else { bn.textContent = 'Even'; bn.classList.add('even'); bw.textContent = 'Right on track with the agreement.'; }
+
+  document.getElementById('totalDelivered').textContent = totalDelivered;
+  document.getElementById('totalOwed').textContent = totalOwed;
+
+  const pct = totalOwed ? Math.min(100, Math.round(totalDelivered/totalOwed*100)) : 0;
+  document.getElementById('trackFill').style.width = pct+'%';
+  document.getElementById('legendLeft').textContent = totalDelivered+' delivered';
+  document.getElementById('legendRight').textContent = totalOwed+' owed';
+
+  // ---- reconciliation cards ----
+  const recon = document.getElementById('recon');
+  monthsWithVideos.forEach(m=>{
+    const d = monthDelivered(m);
+    const diff = d - QUOTA_PER_MONTH;
+    let cls='even', txt='on target';
+    if(diff>0){cls='ahead';txt=`+${diff} extra`;}
+    else if(diff<0){cls='behind';txt=`${diff} short`;}
+    recon.insertAdjacentHTML('beforeend',`
+      <div class="recon-card">
+        <div class="m">${m.name} ${m.year}</div>
+        <div class="row">
+          <span class="delivered">${d}<span class="quota"> / ${QUOTA_PER_MONTH}</span></span>
+          <span class="pill ${cls}">${txt}</span>
+        </div>
+      </div>`);
+  });
+
+  // ---- month sections ----
+  const wrap = document.getElementById('months');
+  MONTHS.forEach(m=>{
+    const delivered = monthDelivered(m);
+    const pending = monthPending(m);
+    const edited = m.videos.filter(v=>v.status==='edited');
+    const pendingVids = m.videos.filter(v=>v.status==='pending');
+
+    let html = `<section class="month" id="m-${m.name.toLowerCase()}">
+      <div class="month-head">
+        <h2>${m.name} <span class="yr">${m.year}</span></h2>
+        <div class="month-count"><b>${delivered}</b> of ${QUOTA_PER_MONTH} delivered${pending?` · <b>${pending}</b> in editing`:''}</div>
+      </div>`;
+
+    if(m.note) html += `<div class="month-note">${m.note}</div>`;
+
+    if(m.videos.length === 0){
+      html += `<div class="empty">No videos logged yet for ${m.name}.</div>`;
+    } else {
+      html += `<div class="grid">`;
+      edited.forEach(v=>{ html += card(v); });
+      html += `</div>`;
+      if(pendingVids.length){
+        html += `<div class="pending-banner" style="margin-top:22px">⟳ IN EDITING — filmed, not yet delivered</div>`;
+        html += `<div class="grid">`;
+        pendingVids.forEach(v=>{ html += card(v); });
+        html += `</div>`;
+      }
+    }
+    html += `</section>`;
+    wrap.insertAdjacentHTML('beforeend', html);
+  });
+
+  function card(v){
+    const n = v.countsAs||1;
+    const isPending = v.status==='pending';
+    const badge = n>1 ? `<span class="badge-2x">${n}×</span>` : '';
+    const photoBtn = v.photo
+      ? `<a class="btn photo" href="${v.photo}" target="_blank" rel="noopener">Photos</a>`
+      : `<span class="btn photo disabled">No photos</span>`;
+    const videoBtn = v.video
+      ? `<a class="btn video" href="${v.video}" target="_blank" rel="noopener">Download</a>`
+      : `<span class="btn video disabled">Pending</span>`;
+    return `
+      <div class="card ${isPending?'pending':''}">
+        <div class="card-top">
+          <div class="card-title">${v.title}</div>
+          ${badge}
+        </div>
+        <div class="status-row">
+          <span class="dot ${v.status}"></span>
+          <span class="status-txt">${isPending?'In editing':'Delivered'}${n>1?` · counts as ${n}`:''}</span>
+        </div>
+        <div class="links">
+          ${videoBtn}
+          ${photoBtn}
+        </div>
+      </div>`;
+  }
+
+  document.getElementById('lastBuilt').textContent =
+    'Built ' + new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+</script>
+</body>
+</html>
