@@ -6,34 +6,41 @@
 <title>The Rock &amp; Soul — Content Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#14161c;
-    --bg-raise:#1c1f28;
-    --bg-card:#21252f;
-    --line:#2e333f;
-    --line-soft:#272c36;
-    --ink:#f3efe7;
-    --ink-dim:#a4a9b4;
-    --ink-faint:#6f7682;
-    --amber:#e9a93c;
-    --amber-soft:#3a2e18;
-    --green:#6fcf8e;
-    --green-soft:#1f3326;
-    --pending:#f0c64b;
-    --pending-soft:#37310f;
-    --red:#e07a6b;
-    --red-soft:#3a221e;
-    --radius:14px;
+    --bg:#faf6fb;
+    --bg-raise:#ffffff;
+    --bg-card:#ffffff;
+    --line:#ecdcef;
+    --line-soft:#f1e6f3;
+    --ink:#3a2740;
+    --ink-dim:#7b6585;
+    --ink-faint:#a995af;
+    --amethyst:#8b5cb8;
+    --amethyst-deep:#6d3f9e;
+    --amethyst-soft:#f3eafb;
+    --rose:#d6749e;
+    --rose-soft:#fbe9f1;
+    --green:#5aa977;
+    --green-soft:#e6f4ec;
+    --pending:#c98a2e;
+    --pending-soft:#fcf2e0;
+    --red:#c96b7e;
+    --red-soft:#fbe9ee;
+    --radius:16px;
     --maxw:1080px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
-    background:var(--bg);
+    background:
+      radial-gradient(1200px 500px at 85% -5%, #f6e9fb 0%, rgba(246,233,251,0) 60%),
+      radial-gradient(900px 500px at 0% 0%, #fbeaf2 0%, rgba(251,234,242,0) 55%),
+      var(--bg);
+    background-attachment:fixed;
     color:var(--ink);
-    font-family:'Space Grotesk',system-ui,sans-serif;
+    font-family:'Outfit',system-ui,sans-serif;
     line-height:1.5;
     -webkit-font-smoothing:antialiased;
     padding:0 20px 80px;
@@ -51,7 +58,7 @@
     font-size:.72rem;
     letter-spacing:.22em;
     text-transform:uppercase;
-    color:var(--amber);
+    color:var(--rose);
     margin-bottom:14px;
   }
   h1{
@@ -60,8 +67,14 @@
     font-size:clamp(2rem,5vw,3.2rem);
     line-height:1.04;
     letter-spacing:-.01em;
+    display:flex;
+    align-items:center;
+    gap:.4em;
+    flex-wrap:wrap;
   }
-  h1 .soul{font-style:italic;color:var(--amber)}
+  .gem{display:inline-flex;width:.78em;height:.94em;filter:drop-shadow(0 4px 8px rgba(139,92,184,.4))}
+  .gem svg{width:100%;height:100%}
+  h1 .soul{font-style:italic;color:var(--amethyst)}
   .sub{
     color:var(--ink-dim);
     margin-top:12px;
@@ -76,6 +89,7 @@
     border-radius:var(--radius);
     padding:30px 30px 26px;
     margin-bottom:14px;
+    box-shadow:0 18px 40px -28px rgba(109,63,158,.45);
   }
   .hero-top{
     display:flex;
@@ -101,7 +115,7 @@
   }
   .balance-num.ahead{color:var(--green)}
   .balance-num.behind{color:var(--red)}
-  .balance-num.even{color:var(--ink)}
+  .balance-num.even{color:var(--amethyst)}
   .balance-word{
     font-size:.95rem;
     color:var(--ink-dim);
@@ -114,6 +128,7 @@
     font-size:1.5rem;
     font-weight:600;
     font-variant-numeric:tabular-nums;
+    color:var(--amethyst-deep);
   }
   .hero-stat .l{
     font-size:.74rem;
@@ -126,14 +141,18 @@
   /* progress track */
   .track-wrap{margin-top:6px}
   .track{
-    height:12px;
-    background:var(--bg);
+    height:14px;
+    background:var(--amethyst-soft);
     border-radius:99px;
     overflow:hidden;
     display:flex;
     border:1px solid var(--line);
   }
-  .track .fill{background:var(--amber);height:100%;transition:width .9s cubic-bezier(.2,.7,.2,1)}
+  .track .fill{
+    background:linear-gradient(90deg,#b07fd6 0%,#8b5cb8 45%,#d6749e 100%);
+    height:100%;
+    transition:width .9s cubic-bezier(.2,.7,.2,1);
+  }
   .track-legend{
     display:flex;
     justify-content:space-between;
@@ -155,6 +174,7 @@
     border:1px solid var(--line-soft);
     border-radius:12px;
     padding:16px 18px;
+    box-shadow:0 10px 26px -22px rgba(109,63,158,.4);
   }
   .recon-card .m{
     font-family:'IBM Plex Mono',monospace;
@@ -174,8 +194,9 @@
     font-size:1.7rem;
     font-weight:600;
     font-variant-numeric:tabular-nums;
+    color:var(--amethyst-deep);
   }
-  .recon-card .quota{color:var(--ink-faint);font-size:.9rem}
+  .recon-card .quota{color:var(--ink-faint);font-size:.9rem;font-weight:400}
   .pill{
     display:inline-block;
     font-size:.76rem;
@@ -186,7 +207,7 @@
   }
   .pill.ahead{background:var(--green-soft);color:var(--green)}
   .pill.behind{background:var(--red-soft);color:var(--red)}
-  .pill.even{background:var(--amber-soft);color:var(--amber)}
+  .pill.even{background:var(--amethyst-soft);color:var(--amethyst)}
 
   /* ---------- Month sections ---------- */
   .month{margin-bottom:46px;scroll-margin-top:20px}
@@ -212,11 +233,11 @@
     font-size:.85rem;
     color:var(--ink-dim);
   }
-  .month-count b{color:var(--ink);font-weight:600}
+  .month-count b{color:var(--amethyst-deep);font-weight:600}
   .month-note{
-    background:var(--amber-soft);
-    border-left:3px solid var(--amber);
-    color:#f0d9a8;
+    background:var(--rose-soft);
+    border-left:3px solid var(--rose);
+    color:#9a4368;
     padding:10px 14px;
     border-radius:6px;
     font-size:.9rem;
@@ -225,7 +246,7 @@
   .pending-banner{
     background:var(--pending-soft);
     border-left:3px solid var(--pending);
-    color:#f3df9c;
+    color:#8a5e1c;
     padding:10px 14px;
     border-radius:6px;
     font-size:.88rem;
@@ -248,21 +269,23 @@
     display:flex;
     flex-direction:column;
     gap:14px;
-    transition:border-color .2s,transform .2s;
+    transition:border-color .2s,transform .2s,box-shadow .2s;
     position:relative;
+    box-shadow:0 10px 26px -22px rgba(109,63,158,.4);
   }
-  .card:hover{border-color:#3c424f;transform:translateY(-2px)}
-  .card.pending{border-color:#574d22;background:linear-gradient(180deg,var(--pending-soft) 0%,var(--bg-card) 60%)}
+  .card:hover{border-color:var(--amethyst);transform:translateY(-2px);box-shadow:0 16px 32px -22px rgba(109,63,158,.55)}
+  .card.pending{border-color:#eccfa0;background:linear-gradient(180deg,var(--pending-soft) 0%,var(--bg-card) 55%)}
   .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
   .card-title{
     font-size:1.02rem;
     font-weight:600;
     line-height:1.25;
+    color:var(--ink);
   }
   .badge-2x{
     flex-shrink:0;
-    background:var(--amber);
-    color:#14161c;
+    background:linear-gradient(135deg,#8b5cb8,#d6749e);
+    color:#fff;
     font-family:'IBM Plex Mono',monospace;
     font-weight:700;
     font-size:.78rem;
@@ -287,11 +310,11 @@
     border:1px solid var(--line);
     transition:background .15s,border-color .15s,color .15s;
   }
-  .btn.video{background:var(--amber);color:#14161c;border-color:var(--amber)}
-  .btn.video:hover{background:#f3bb55}
-  .btn.photo{background:transparent;color:var(--ink-dim)}
-  .btn.photo:hover{border-color:var(--ink-faint);color:var(--ink)}
-  .btn.disabled{opacity:.32;pointer-events:none}
+  .btn.video{background:var(--amethyst);color:#fff;border-color:var(--amethyst)}
+  .btn.video:hover{background:var(--amethyst-deep);border-color:var(--amethyst-deep)}
+  .btn.photo{background:transparent;color:var(--amethyst-deep)}
+  .btn.photo:hover{border-color:var(--rose);color:var(--rose)}
+  .btn.disabled{opacity:.4;pointer-events:none;color:var(--ink-faint)}
 
   .empty{
     color:var(--ink-faint);
@@ -328,7 +351,7 @@
 
   <header>
     <div class="eyebrow">Content Delivery · reelCreative</div>
-    <h1>The Rock &amp; <span class="soul">Soul</span></h1>
+    <h1><span class="gem" aria-hidden="true"><svg viewBox="0 0 40 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 2 L34 14 L20 46 L6 14 Z" fill="url(#gemg)" stroke="#fff" stroke-width="1"/><path d="M6 14 L34 14 M20 2 L20 46 M6 14 L20 22 L34 14 M20 22 L20 46" stroke="#fff" stroke-width="1" opacity=".55"/><defs><linearGradient id="gemg" x1="6" y1="2" x2="34" y2="46" gradientUnits="userSpaceOnUse"><stop stop-color="#b07fd6"/><stop offset=".5" stop-color="#8b5cb8"/><stop offset="1" stop-color="#d6749e"/></linearGradient></defs></svg></span>The Rock &amp; <span class="soul">Soul</span></h1>
     <p class="sub">A running record of every video and photo delivered each month, measured against the 8-video monthly agreement.</p>
   </header>
 
@@ -373,6 +396,7 @@
 <script src="data.js"></script>
 <script>
   const monthsWithVideos = MONTHS.filter(m => m.videos.length > 0);
+  const completeMonths = MONTHS.filter(m => m.complete);
 
   // ---- math helpers ----
   const monthDelivered = m =>
@@ -380,16 +404,18 @@
   const monthPending = m =>
     m.videos.reduce((s,v) => s + (v.status === "pending" ? (v.countsAs||1) : 0), 0);
 
-  const totalDelivered = monthsWithVideos.reduce((s,m)=>s+monthDelivered(m),0);
-  const totalOwed = monthsWithVideos.length * QUOTA_PER_MONTH;
+  // Balance only counts FINISHED months, so an in-progress month
+  // never makes things look negative before it's wrapped.
+  const totalDelivered = completeMonths.reduce((s,m)=>s+monthDelivered(m),0);
+  const totalOwed = completeMonths.length * QUOTA_PER_MONTH;
   const balance = totalDelivered - totalOwed;
 
   // ---- hero ----
   const bn = document.getElementById('balanceNum');
   const bw = document.getElementById('balanceWord');
-  if(balance > 0){ bn.textContent = '+'+balance; bn.classList.add('ahead'); bw.textContent = `${balance} video${balance>1?'s':''} ahead of the agreement.`; }
+  if(balance > 0){ bn.textContent = '+'+balance; bn.classList.add('ahead'); bw.textContent = `${balance} video${balance>1?'s':''} ahead across completed months.`; }
   else if(balance < 0){ bn.textContent = balance; bn.classList.add('behind'); bw.textContent = `${Math.abs(balance)} video${Math.abs(balance)>1?'s':''} to make up.`; }
-  else { bn.textContent = 'Even'; bn.classList.add('even'); bw.textContent = 'Right on track with the agreement.'; }
+  else { bn.textContent = 'Even'; bn.classList.add('even'); bw.textContent = 'Right on track across completed months.'; }
 
   document.getElementById('totalDelivered').textContent = totalDelivered;
   document.getElementById('totalOwed').textContent = totalOwed;
@@ -407,6 +433,7 @@
     let cls='even', txt='on target';
     if(diff>0){cls='ahead';txt=`+${diff} extra`;}
     else if(diff<0){cls='behind';txt=`${diff} short`;}
+    if(!m.complete){ cls='even'; txt='in progress'; }
     recon.insertAdjacentHTML('beforeend',`
       <div class="recon-card">
         <div class="m">${m.name} ${m.year}</div>
