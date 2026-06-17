@@ -21,6 +21,14 @@
    --- THE NUMBERS AT THE TOP ------------------------------------------------
      QUOTA_PER_MONTH   How many videos are owed each month (8 per the contract)
      PHOTOS_PER_MONTH  Photo cap per month (20 per the contract)
+
+   --- "complete" ON EACH MONTH ----------------------------------------------
+     complete: true   The month is finished. It counts toward the running
+                      balance (owes the full 8).
+     complete: false  The month is still in progress. Its videos still show,
+                      but it does NOT count against the balance yet, so an
+                      in-progress month never makes the balance look negative.
+                      Flip it to true once the month is wrapped.
    ========================================================================== */
 
 const QUOTA_PER_MONTH  = 8;
@@ -32,6 +40,7 @@ const MONTHS = [
   {
     name: "April",
     year: 2026,
+    complete: true,
     note: "The Utica Field Trip Recap counts as 2 videos because of the extra filming hours.",
     videos: [
       {
@@ -76,6 +85,7 @@ const MONTHS = [
   {
     name: "May",
     year: 2026,
+    complete: true,
     note: "Two extra videos delivered this month to make up for April.",
     videos: [
       {
@@ -155,6 +165,7 @@ const MONTHS = [
   {
     name: "June",
     year: 2026,
+    complete: false,
     note: "",
     videos: [
       // Add June videos here. Copy a block above, paste it, change the words.
@@ -166,6 +177,7 @@ const MONTHS = [
   {
     name: "July",
     year: 2026,
+    complete: false,
     note: "",
     videos: [
       // Add July videos here.
