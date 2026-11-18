@@ -42,6 +42,10 @@ A live dashboard showing every video and photo delivered each month against the
 - **Mark something as still editing:** set `status: "pending"`.
 - **A long video that's worth more than one:** set `countsAs: 2` (or 3, 4...).
 - **Add a note to a month** (e.g. why something counts as 2): edit the `note:` line.
+- **Mark a video as posted:** change `posted: false` to `posted: true`. It drops
+  off the "Waiting to be posted" list and loses its pink "Not posted yet" banner.
+- **Add a new month:** add it at the bottom of `data.js`. The site always shows
+  the newest month at the top.
 - **Finish a month:** set `complete: true` on that month. Until you do, the
   month shows as "in progress" and doesn't count against the running balance —
   so a half-finished June never makes the numbers look bad.

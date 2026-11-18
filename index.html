@@ -165,7 +165,7 @@
   /* ---------- Reconciliation strip ---------- */
   .recon{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
     gap:10px;
     margin-bottom:40px;
   }
@@ -186,10 +186,11 @@
   }
   .recon-card .row{
     display:flex;
-    justify-content:space-between;
-    align-items:baseline;
-    margin-bottom:4px;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:8px;
   }
+  .recon-card .delivered,.pill{white-space:nowrap}
   .recon-card .delivered{
     font-size:1.7rem;
     font-weight:600;
@@ -314,6 +315,72 @@
   .btn.video:hover{background:var(--amethyst-deep);border-color:var(--amethyst-deep)}
   .btn.photo{background:transparent;color:var(--amethyst-deep)}
   .btn.photo:hover{border-color:var(--rose);color:var(--rose)}
+  .photo-bar{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    background:var(--bg-card);border:1px solid var(--line-soft);border-left:3px solid var(--amethyst);
+    border-radius:12px;padding:14px 18px;margin-bottom:20px;
+    box-shadow:0 10px 26px -22px rgba(109,63,158,.4);
+  }
+  .photo-bar.empty-bar{border-left-color:var(--line);box-shadow:none;background:transparent}
+  .photo-num{font-weight:600;color:var(--amethyst-deep);font-size:1.02rem}
+  .photo-sub{font-size:.82rem;color:var(--ink-dim);font-family:'IBM Plex Mono',monospace;letter-spacing:.02em}
+  .btn.photo-btn{flex:0 0 auto;padding:9px 18px;background:var(--rose);border-color:var(--rose);color:#fff}
+  .btn.photo-btn:hover{background:#c25f8b;border-color:#c25f8b}
+  .recon-photos{margin-top:8px;font-size:.78rem;color:var(--ink-dim);font-family:'IBM Plex Mono',monospace}
+  /* ---------- Posting tracker ---------- */
+  .queue{
+    background:var(--bg-card);
+    border:2px solid var(--rose);
+    border-radius:var(--radius);
+    padding:26px 28px;
+    margin-bottom:44px;
+    box-shadow:0 18px 40px -30px rgba(214,116,158,.6);
+  }
+  .queue.all-clear{border-color:var(--green)}
+  .queue-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap;margin-bottom:18px}
+  .queue-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);margin-bottom:6px}
+  .queue h2{font-family:'Fraunces',serif;font-weight:500;font-size:1.7rem;line-height:1.1}
+  .queue-sub{color:var(--ink-dim);font-size:.95rem;margin-top:6px}
+  .queue-count{text-align:right}
+  .queue-count .n{font-family:'Fraunces',serif;font-size:2.8rem;line-height:1;color:var(--rose)}
+  .queue.all-clear .queue-count .n{color:var(--green)}
+  .queue-count .l{font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);margin-top:4px}
+  .posted-meter{margin-bottom:20px}
+  .posted-track{height:10px;border-radius:99px;background:var(--rose-soft);overflow:hidden;border:1px solid var(--line)}
+  .posted-fill{height:100%;background:var(--green)}
+  .posted-legend{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--ink-dim)}
+  .posted-legend .k{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  .queue-group{margin-top:16px}
+  .queue-month{font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px}
+  .queue-row{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:10px 14px;border-radius:10px;background:var(--rose-soft);margin-bottom:6px;
+  }
+  .queue-row .t{font-weight:600;color:var(--ink);display:flex;align-items:center;gap:10px;min-width:0}
+  .queue-row .t::before{content:"";flex:0 0 8px;height:8px;border-radius:50%;background:var(--rose)}
+  .queue-row .btn{flex:0 0 auto;padding:7px 14px}
+  .queue-empty{color:var(--green);font-weight:500}
+
+  /* not-posted cards */
+  .card.unposted{border:2px solid var(--rose);padding-top:0;overflow:hidden}
+  .ribbon{
+    margin:0 -18px;padding:7px 18px;
+    background:var(--rose);color:#fff;
+    font-family:'IBM Plex Mono',monospace;font-size:.74rem;font-weight:500;
+    letter-spacing:.14em;text-transform:uppercase;
+  }
+  .dot.posted{background:var(--green)}
+  .dot.unposted{background:var(--rose)}
+  .status-txt b{font-weight:500}
+  .status-txt .np{color:var(--rose)}
+  .month-count .np,.recon-np{color:var(--rose);font-weight:600}
+  .recon-np{margin-top:6px;font-size:.78rem;font-family:'IBM Plex Mono',monospace}
+  .hero-stat.unposted .v{color:var(--rose)}
+  @media (max-width:560px){
+    .queue{padding:22px 18px}
+    .queue-count{text-align:left}
+  }
+
   .btn.disabled{opacity:.4;pointer-events:none;color:var(--ink-faint)}
 
   .empty{
@@ -371,6 +438,10 @@
           <div class="v" id="totalOwed">—</div>
           <div class="l">Owed to date</div>
         </div>
+        <div class="hero-stat unposted">
+          <div class="v" id="totalUnposted">—</div>
+          <div class="l">Not posted yet</div>
+        </div>
       </div>
     </div>
     <div class="track-wrap">
@@ -384,6 +455,8 @@
 
   <section class="recon" id="recon"></section>
 
+  <section class="queue" id="queue"></section>
+
   <div id="months"></div>
 
   <footer>
@@ -395,7 +468,15 @@
 
 <script src="data.js"></script>
 <script>
-  const monthsWithVideos = MONTHS.filter(m => m.videos.length > 0);
+  // Newest month first, no matter what order the data file is in.
+  const MONTH_NAMES = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  const monthKey = m => m.year*12 + MONTH_NAMES.indexOf(m.name);
+  const NEWEST_FIRST = [...MONTHS].sort((a,b)=>monthKey(b)-monthKey(a));
+  const isPosted = v => v.posted === true;
+  const deliveredVids = m => m.videos.filter(v=>v.status==='edited');
+  const notPostedVids = m => deliveredVids(m).filter(v=>!isPosted(v));
+
+  const monthsWithVideos = NEWEST_FIRST.filter(m => m.videos.length > 0);
   const completeMonths = MONTHS.filter(m => m.complete);
 
   // ---- math helpers ----
@@ -436,17 +517,65 @@
     if(!m.complete){ cls='even'; txt='in progress'; }
     recon.insertAdjacentHTML('beforeend',`
       <div class="recon-card">
-        <div class="m">${m.name} ${m.year}</div>
+        <div class="m">${m.name.slice(0,3)} ${m.year}</div>
         <div class="row">
           <span class="delivered">${d}<span class="quota"> / ${QUOTA_PER_MONTH}</span></span>
           <span class="pill ${cls}">${txt}</span>
         </div>
+        ${notPostedVids(m).length?`<div class="recon-np">${notPostedVids(m).length} not posted</div>`:''}
+        ${m.photoCount?`<div class="recon-photos">${m.photoCount} photos</div>`:''}
       </div>`);
   });
 
+  // ---- posting tracker ----
+  (function(){
+    const q = document.getElementById('queue');
+    const allDelivered = MONTHS.flatMap(deliveredVids);
+    const waiting = NEWEST_FIRST.map(m=>({m, vids: notPostedVids(m)})).filter(g=>g.vids.length);
+    const nWaiting = waiting.reduce((s,g)=>s+g.vids.length,0);
+    const nPosted = allDelivered.length - nWaiting;
+    const pct = allDelivered.length ? Math.round(nPosted/allDelivered.length*100) : 0;
+    document.getElementById('totalUnposted').textContent = nWaiting;
+
+    if(!nWaiting){
+      q.classList.add('all-clear');
+      q.innerHTML = `<div class="queue-head"><div>
+          <div class="queue-eyebrow">Posting tracker</div>
+          <h2>Everything is posted</h2>
+          <p class="queue-sub">All ${allDelivered.length} delivered videos are up on social.</p>
+        </div></div>`;
+      return;
+    }
+    let html = `
+      <div class="queue-head">
+        <div>
+          <div class="queue-eyebrow">Posting tracker</div>
+          <h2>Waiting to be posted</h2>
+          <p class="queue-sub">Delivered and ready to download. These haven't gone up on social yet.</p>
+        </div>
+        <div class="queue-count"><div class="n">${nWaiting}</div><div class="l">Not posted</div></div>
+      </div>
+      <div class="posted-meter">
+        <div class="posted-track"><div class="posted-fill" style="width:${pct}%"></div></div>
+        <div class="posted-legend">
+          <span><i class="k" style="background:var(--green)"></i>${nPosted} posted</span>
+          <span><i class="k" style="background:var(--rose)"></i>${nWaiting} not posted</span>
+        </div>
+      </div>`;
+    waiting.forEach(g=>{
+      html += `<div class="queue-group"><div class="queue-month">${g.m.name} ${g.m.year}</div>`;
+      g.vids.forEach(v=>{
+        html += `<div class="queue-row"><span class="t">${v.title}</span>${
+          v.video?`<a class="btn video" href="${v.video}" target="_blank" rel="noopener">Download</a>`:''}</div>`;
+      });
+      html += `</div>`;
+    });
+    q.innerHTML = html;
+  })();
+
   // ---- month sections ----
   const wrap = document.getElementById('months');
-  MONTHS.forEach(m=>{
+  NEWEST_FIRST.forEach(m=>{
     const delivered = monthDelivered(m);
     const pending = monthPending(m);
     const edited = m.videos.filter(v=>v.status==='edited');
@@ -455,10 +584,23 @@
     let html = `<section class="month" id="m-${m.name.toLowerCase()}">
       <div class="month-head">
         <h2>${m.name} <span class="yr">${m.year}</span></h2>
-        <div class="month-count"><b>${delivered}</b> of ${QUOTA_PER_MONTH} delivered${pending?` · <b>${pending}</b> in editing`:''}</div>
+        <div class="month-count"><b>${delivered}</b> of ${QUOTA_PER_MONTH} delivered${notPostedVids(m).length?` · <span class="np">${notPostedVids(m).length} not posted</span>`:''}${pending?` · <b>${pending}</b> in editing`:''}</div>
       </div>`;
 
     if(m.note) html += `<div class="month-note">${m.note}</div>`;
+
+    if(m.photos){
+      const extra = (m.photoCount||0) - PHOTOS_PER_MONTH;
+      html += `<div class="photo-bar">
+        <div>
+          <div class="photo-num">${m.photoCount} edited photos</div>
+          <div class="photo-sub">${PHOTOS_PER_MONTH} included each month${extra>0?` · ${extra} extra`:''}</div>
+        </div>
+        <a class="btn photo-btn" href="${m.photos}" target="_blank" rel="noopener">View photos</a>
+      </div>`;
+    } else if(m.complete || m.videos.length){
+      html += `<div class="photo-bar empty-bar"><div class="photo-sub">No photos posted for ${m.name} yet.</div></div>`;
+    }
 
     if(m.videos.length === 0){
       html += `<div class="empty">No videos logged yet for ${m.name}.</div>`;
@@ -483,19 +625,26 @@
     const badge = n>1 ? `<span class="badge-2x">${n}×</span>` : '';
     const photoBtn = v.photo
       ? `<a class="btn photo" href="${v.photo}" target="_blank" rel="noopener">Photos</a>`
-      : `<span class="btn photo disabled">No photos</span>`;
+      : '';
     const videoBtn = v.video
       ? `<a class="btn video" href="${v.video}" target="_blank" rel="noopener">Download</a>`
       : `<span class="btn video disabled">Pending</span>`;
+    const unposted = !isPending && !isPosted(v);
+    let dotCls = v.status, statusTxt = 'In editing';
+    if(!isPending){
+      dotCls = unposted ? 'unposted' : 'posted';
+      statusTxt = unposted ? '<span class="np">Delivered · not posted</span>' : 'Delivered · <b>posted</b>';
+    }
     return `
-      <div class="card ${isPending?'pending':''}">
+      <div class="card ${isPending?'pending':''} ${unposted?'unposted':''}">
+        ${unposted?'<div class="ribbon">Not posted yet</div>':''}
         <div class="card-top">
           <div class="card-title">${v.title}</div>
           ${badge}
         </div>
         <div class="status-row">
-          <span class="dot ${v.status}"></span>
-          <span class="status-txt">${isPending?'In editing':'Delivered'}${n>1?` · counts as ${n}`:''}</span>
+          <span class="dot ${dotCls}"></span>
+          <span class="status-txt">${statusTxt}${n>1?` · counts as ${n}`:''}</span>
         </div>
         <div class="links">
           ${videoBtn}

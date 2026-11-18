@@ -5,6 +5,8 @@
    THIS IS THE ONLY FILE YOU EVER NEED TO EDIT.
 
    Each month is one block. Inside it, each video is one block.
+   Add new months at the BOTTOM of this file. The website shows the newest
+   month at the top automatically.
    To add a video, copy an existing video block, paste it, and change the words.
    Save the file, commit, and the website updates itself.
 
@@ -16,6 +18,9 @@
                  Most are 1. A big shoot might be 2, 3, or 4.
      status      "edited"  = done and delivered
                  "pending" = filmed, still being edited (shows in yellow)
+     posted      true  = it's up on social media
+                 false = delivered but not posted yet (shows in the
+                         "Waiting to be posted" list at the top)
    --------------------------------------------------------------------------
 
    --- THE NUMBERS AT THE TOP ------------------------------------------------
@@ -57,6 +62,7 @@ const MONTHS = [
         photo: "",
         countsAs: 2,
         status: "edited",
+        posted: true,
       },
       {
         title: "R&S Field Trip Reel v2",
@@ -64,6 +70,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "R&S Sluice Box Reel",
@@ -71,6 +78,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Gem Mining Activity Promo Video",
@@ -78,6 +86,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Drone One Shotter",
@@ -85,6 +94,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
     ],
   },
@@ -104,6 +114,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Summer Promo R&S",
@@ -111,6 +122,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Summer Promo 2",
@@ -118,6 +130,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Sulfur",
@@ -125,6 +138,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Magnesium",
@@ -132,6 +146,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Amethyst",
@@ -139,6 +154,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Copper",
@@ -146,6 +162,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Purple Agate",
@@ -153,6 +170,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Rubies v2",
@@ -160,6 +178,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Adventure x Wonder",
@@ -167,6 +186,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
     ],
   },
@@ -186,6 +206,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Peaceful Pebbles",
@@ -193,6 +214,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Tumble Stones",
@@ -200,6 +222,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Vintage Sale Promo",
@@ -207,6 +230,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Rollie Pollie",
@@ -214,6 +238,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Green Mica",
@@ -221,6 +246,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Something for Everyone",
@@ -228,6 +254,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Sluice Box",
@@ -235,6 +262,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
     ],
   },
@@ -254,6 +282,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Ammonite",
@@ -261,6 +290,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Fountain",
@@ -268,6 +298,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Tarot & Books",
@@ -275,6 +306,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Rose Quartz",
@@ -282,6 +314,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: false,
       },
       {
         title: "Arrowheads",
@@ -289,6 +322,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: false,
       },
       {
         title: "Copper Collectible Coin",
@@ -296,6 +330,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Purple Charoite",
@@ -303,6 +338,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
     ],
   },
@@ -322,6 +358,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Kids Stuff",
@@ -329,6 +366,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Vanadinite",
@@ -336,6 +374,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Aquamarine",
@@ -343,6 +382,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Burgoo Promo 2",
@@ -350,6 +390,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Soapstone Carvings",
@@ -357,6 +398,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: false,
       },
       {
         title: "Something for Everyone (August)",
@@ -364,6 +406,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Pink Calcite",
@@ -371,6 +414,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: false,
       },
     ],
   },
@@ -381,7 +425,7 @@ const MONTHS = [
     year: 2026,
     photos: "",
     photoCount: 0,
-    complete: false,
+    complete: true,
     note: "",
     videos: [
       {
@@ -390,6 +434,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: false,
       },
       {
         title: "What You'll Find",
@@ -397,13 +442,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
-      },
-      {
-        title: "What You'll Find (Graphics)",
-        video: "https://public.3.basecamp.com/p/Qv54bMh8sjnkTbsPcfEFGq5q",
-        photo: "",
-        countsAs: 1,
-        status: "edited",
+        posted: true,
       },
       {
         title: "Libyan Desert Glass",
@@ -411,6 +450,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: false,
       },
       {
         title: "Fulgurite (Morocco)",
@@ -418,6 +458,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: false,
       },
       {
         title: "Motion Graphic Video",
@@ -425,6 +466,7 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
       },
       {
         title: "Halloween",
@@ -432,21 +474,60 @@ const MONTHS = [
         photo: "",
         countsAs: 1,
         status: "edited",
+        posted: true,
+      },
+      {
+        title: "Fluorite",
+        video: "https://public.3.basecamp.com/p/SvWnnmq8cu6Pnjj2U3GuEbrj/vault/10457431453",
+        photo: "",
+        countsAs: 1,
+        status: "edited",
+        posted: true,
+      },
+      {
+        title: "Willemite",
+        video: "https://public.3.basecamp.com/p/SvWnnmq8cu6Pnjj2U3GuEbrj/vault/10521287249",
+        photo: "",
+        countsAs: 1,
+        status: "edited",
+        posted: false,
       },
     ],
   },
 
-  /* ===================== OCTOBER ===================== */
+  /* ===================== NOVEMBER ===================== */
   {
-    name: "October",
+    name: "November",
     year: 2026,
     photos: "",
     photoCount: 0,
     complete: false,
     note: "",
     videos: [
-      // Add October videos here. Copy a block above, paste it, change the words.
-      // Set status to "pending" for anything filmed but not yet edited.
+      {
+        title: "Jade",
+        video: "https://public.3.basecamp.com/p/SvWnnmq8cu6Pnjj2U3GuEbrj/vault/10521192318",
+        photo: "",
+        countsAs: 1,
+        status: "edited",
+        posted: false,
+      },
+      {
+        title: "Large Specimens",
+        video: "https://public.3.basecamp.com/p/SvWnnmq8cu6Pnjj2U3GuEbrj/vault/10521207534",
+        photo: "",
+        countsAs: 1,
+        status: "edited",
+        posted: false,
+      },
+      {
+        title: "Crystal Trees",
+        video: "https://public.3.basecamp.com/p/SvWnnmq8cu6Pnjj2U3GuEbrj/vault/10521273761",
+        photo: "",
+        countsAs: 1,
+        status: "edited",
+        posted: false,
+      },
     ],
   },
 
