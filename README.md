@@ -1,7 +1,6 @@
-[README.md](https://github.com/user-attachments/files/29067873/README.md)
 # The Rock & Soul — Content Dashboard
 
-A live dashboard showing every video and photo delivered each month against the
+A live dashboard showing every video delivered each month against the
 8-video monthly agreement. Built to be updated by editing one file.
 
 ---
@@ -11,7 +10,7 @@ A live dashboard showing every video and photo delivered each month against the
 - **Running balance** at the top — instantly answers "am I getting what I pay for?"
 - **Per-month reconciliation** — e.g. April shows `6/8` (short), May shows `10/8`
   (extra), so the April-vs-May situation reads at a glance.
-- **Each video** — title, a Download button, a Photos button, and a status dot.
+- **Each video** — title, a Download button, and whether it's been posted.
 - **In Editing section** — anything filmed but not yet edited shows in yellow so
   the pipeline is visible even before the video ships.
 - **Multiplier badges** — a big shoot can count as `2×`, `3×`, etc. toward the
@@ -30,9 +29,9 @@ A live dashboard showing every video and photo delivered each month against the
    {
      title: "Citrine Close-Up",        // the video name
      video: "https://...",             // download link (leave "" if not ready)
-     photo: "https://...",             // photo link (leave "" if none)
      countsAs: 1,                       // 1, or 2/3/4 for a big shoot
      status: "edited",                  // "edited" = done, "pending" = still editing
+     posted: false,                     // true once it's up on social
    },
    ```
 
